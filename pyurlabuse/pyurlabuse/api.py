@@ -102,7 +102,7 @@ class PyURLAbuse(object):
         done = []
         while waiting:
             waiting = False
-            for u, job_id in res.iteritems():
+            for u, job_id in res.items():
                 if job_id in done:
                     continue
                 ips = self.get_result(job_id)

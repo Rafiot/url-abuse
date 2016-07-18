@@ -78,7 +78,7 @@ class PyURLAbuse(object):
     def run_query(self, q):
         cached = self.get_cache(q)
         if len(cached[0][q]) > 0:
-            return {'info': 'Used cached content'}, cached
+            return {'status': 'cached', 'details': 'Used cached content'}, cached
         job_id = self.urls(q)
         all_urls = None
         while True:
@@ -127,8 +127,7 @@ class PyURLAbuse(object):
                             self.whoismail(ip)
                 waiting = True
                 time.sleep(.5)
-        time.sleep(1)
-        return {'info': 'New query, all the details may not be available.'}, self.get_cache(q)
+        return {'status': 'new', 'details': 'New query, all the details may not be available.'}, self.get_cache(q)
 
     def get_cache(self, q):
         query = {'query': q}
